@@ -8,4 +8,3 @@
 (define (mul a) (cond [(empty? a) 1] [else (* (first a) (mul (rest a)))]))
 (define (root n p) (exp (* (/ 1 n) (log p))))
 (define (geo b) (root (len b) (mul b)))
-; comment
