@@ -1,10 +1,15 @@
-(define A (cons 1 (cons 2 (cons 3 ()))))
+(define A (cons 10 (cons 21 (cons 32 (cons 21 (cons 8 (cons 9 ())))))))
+(define B (cons 12 (cons 23 (cons 22 (cons 19 ())))))
 
-(define (len a) (cond [(null? a) 0] [else (+ 1 (len(cdr a)))]))
-(define (sum a) (cond [(empty? a) 0] [else (+ (first a) (sum (rest a)))]))
-(define (avg s) (cond [(empty? s) 0] [else (/ (sum s) (len s))]))
-(define (mul a) (cond [(empty? a) 1] [else (* (first a) (mul (rest a)))]))
 (define (root n p) (exp (* (/ 1 n) (log p))))
-(define (geo b) (root (len b) (mul b)))
 
-(len A)
+(define (cdr_inf a) (cond [(null? a) ()] [else (cdr a)]))
+(define (car_inf a) (cond [(null? a) 0] [else (car a)]))
+
+(define (len a) (cond [(null? a) 0] [else (+ 1 (len (cdr a))])))
+(define (sum a) (cond [(null? a) 0] [else (+ (car a) (sum (cdr a))])))
+(define (mul a) (cond [(null? a) 1] [else (* (car a) (mul (cdr a))])))
+(define (vahy a b) (cond [(null? a) 0] [else (+ (* (car a) (car b)) (vahy (cdr a) (cdr b))])))
+
+(define (vahy1 a b) (cond [(and (null? a) (null? b)) 0] [else (+ (* (car_inf a) (car_inf b)) (vahy1 (cdr_inf a) (cdr_inf b))])))
+(define (vv a b) (/ (vahy1 a b) (sum a)))
