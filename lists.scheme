@@ -1,5 +1,10 @@
 (define A (cons 1 (cons 2 (cons 3 ()))))
 
 (define (len a) (cond [(null? a) 0] [else (+ 1 (len(cdr a)))]))
+(define (sum a) (cond [(empty? a) 0] [else (+ (first a) (sum (rest a)))]))
+(define (avg s) (cond [(empty? s) 0] [else (/ (sum s) (len s))]))
+(define (mul a) (cond [(empty? a) 1] [else (* (first a) (mul (rest a)))]))
+(define (root n p) (exp (* (/ 1 n) (log p))))
+(define (geo b) (root (len b) (mul b)))
 
 (len A)
